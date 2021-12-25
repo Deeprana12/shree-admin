@@ -32,4 +32,16 @@ if(isset($_POST['delbo'])){
     
 }
 
+if(isset($_POST['msg_id'])){    
+    $id = $_POST['msg_id'];
+    $sql1 = "DELETE from tblcontactusquery where id='$id'";    
+    $result1 = mysqli_query($conn,$sql1);     
+}
+
+if(isset($_POST['imgID'])){    
+    $id = $_POST['imgID'];
+    $sql1 = "DELETE from shreeimages where id='$id'";    
+    $result1 = mysqli_query($conn,$sql1);     
+}
+
 ?>

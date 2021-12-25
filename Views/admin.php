@@ -4,6 +4,7 @@ session_start();
 if(!isset($_SESSION['username'])){
     header("Location: ../index.php");
 }
+include_once '../Database/uploads_img.php'; 
 ?>
 
 <!doctype html>
@@ -63,7 +64,7 @@ if(!isset($_SESSION['username'])){
                 if(str_contains($s,'m1')){
                     ?>
                     <li class="nav-item" id="li4">
-                        <a href="#module1" class="iq-waves-effect nav-link" data-toggle="tab" aria-selected="false" id="li4a"><i class="ri-home-8-line"></i><span>Module - 1</span></a>
+                        <a href="#module1" class="iq-waves-effect nav-link" data-toggle="tab" aria-selected="false" id="li4a"><i class="ri-home-8-line"></i><span>Contact-us queries</span></a>
                     </li>
                 <?php }
                 $per = fetchrole1($conn,$_SESSION['rid']);
@@ -71,7 +72,10 @@ if(!isset($_SESSION['username'])){
                 if(str_contains($s,'m2')){
                     ?>
                     <li class="nav-item" id="li5">
-                        <a href="#module2" class="iq-waves-effect nav-link" data-toggle="tab" aria-selected="false" id="li5a"><i class="ri-home-8-line"></i><span>Module - 2</span></a>
+                        <a href="#module2" class="iq-waves-effect nav-link" data-toggle="tab" aria-selected="false" id="li5a"><i class="ri-home-8-line"></i><span>Images module</span></a>
+                    </li>
+                    <li class="nav-item" id="li6">
+                        <a href="#video_module" class="iq-waves-effect nav-link" data-toggle="tab" aria-selected="false" id="li6a"><i class="ri-home-8-line"></i><span>Videos module</span></a>
                     </li>
                 <?php }?>
             </ul>
@@ -86,9 +90,9 @@ if(!isset($_SESSION['username'])){
     <?php include('tab1_dashboard.php') ?>
     <?php include('tab2_roles.php') ?>
     <?php include('tab3_active_members.php') ?>
-    <?php include('tab4_contact_query.php') ?>    
-    <?php include('tab6_booking_panel.php') ?>
-    
+    <?php include('tab4_image_upload.php') ?>    
+    <?php include('tab6_contactus_query.php') ?>    
+    <?php include('tab7_video_upload.php') ?>
 
 </div>
 <!-- TOP Nav Bar -->
@@ -96,8 +100,6 @@ if(!isset($_SESSION['username'])){
 include_once 'Navbar.php';
 ?>
 <!-- TOP Nav Bar END -->
-
-
 
     <!-- update Modal -->
 <div class="modal fade" id="updatetable" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -340,60 +342,7 @@ include_once 'Navbar.php';
     </div>
 </div>
 
-    <!--user View Modal -->
-<div class="modal fade" id="viewmodal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title">View</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-row mb-2">
-                            <div class="col-3">
-                                <h5><b>Username:</b></h5>
-                            </div>
-                            <div class="col">
-                                <h5 id="v-username"></h5>
-                            </div>
-                        </div>
-                        <div class="form-row mb-2">
-                            <div class="col-3">
-                                <h5><b>Firstname:</b></h5>
-                            </div>
-                            <div class="col">
-                                <h5 id="v-firstname"></h5>
-                            </div>
-                        </div>
-                        <div class="form-row mb-2">
-                            <div class="col-3">
-                                <h5><b>Lastname:</b></h5>
-                            </div>
-                            <div class="col">
-                                <h5 id="v-lastname"></h5>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-3">
-                                <h5><b>Role:</b></h5>
-                            </div>
-                            <div class="col">
-                                <h5 id="v-role"></h5>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-</div>
-
-    <!--admin panel Modal    -->
+    <!--admin panel Modal -->
 <div class="modal fade" id="view-admin" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

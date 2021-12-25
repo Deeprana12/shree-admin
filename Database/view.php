@@ -35,5 +35,12 @@ if(isset($_POST['viewiduser'])){
     echo json_encode($res1);
 }
 
+if(isset($_POST['sendmsg'])){    
+    $id=$_POST['sendmsg'];
+    $sql1= "SELECT * FROM tblcontactusquery where id='$id'";
+    $result = mysqli_query($conn,$sql1);    
+    $res1= mysqli_fetch_assoc($result);
+    echo json_encode($res1);
+}
 
 ?>

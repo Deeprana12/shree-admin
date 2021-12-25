@@ -582,7 +582,34 @@ $(".changethisIddes").click(function(){
                 $("#finaldes").val("1");
             }else{
                 $("#finaldes").val("-1");
-            }                        
+            }
+        }
+    });
+});
+
+$(".viewMessage").click(function(){        
+    var msg_id = $(this).attr("data-id");
+    $.ajax({
+        url: "../Database/view.php",
+        type: "post",
+        data: { sendmsg : msg_id},
+        success: function (d) {       
+            var datas = JSON.parse(d)
+            $("#msgHeader").html(datas.Emailid);
+            $("#msghere").html(datas.Message);
+            $("#msgModal").modal('show');
+        }
+    });
+});
+
+$(".deleteMsg").click(function(){    
+    var id = $(this).attr("data-id");    
+    $.ajax({
+        url: "../Database/deleteuser.php",
+        type: "post",
+        data: { msg_id: id },
+        success: function (d) {            
+            alert('Deleted!!');
         }
     });
 });
@@ -600,6 +627,8 @@ function accept(id){
         }
     });
 }
+
+
 function reject(id){
     var f=1;   
     $.ajax({
@@ -611,7 +640,19 @@ function reject(id){
             $('#desac'+id).text('');
             $('#sl'+id).text('');
         }
-    });
-    
-
+    });    
 }
+
+$("#deleteImg").click(function(){
+    var id = $(this).attr("data-id");    
+    $.ajax({
+        url: "../Database/deleteuser.php",
+        type: "post",
+        data: { imgID: id },
+        success: function (d) {            
+            alert('successfull')
+        },error: function () {
+            alert('error');
+        }
+    })
+})

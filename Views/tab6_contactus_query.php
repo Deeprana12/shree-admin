@@ -21,29 +21,27 @@
                     </div>
                     <div class="iq-card-body">
                         <div class="table-responsive">
-                            <table id="user-list-table" class="table table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">                                
+                            <table id="user-list-table" class="table table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">
                                 <thead>
                                     <tr>
-                                        <th className="col-2">#</th>
-                                        <th className="col-2">First Name</th>			
-                                        <th className="col-2">Last Name</th>
-                                        <th className="col-2">Email</th>
-                                        <th className="col-1">Mobile Number</th>
-                                        <th className="col-1">Message</th>
-                                        <th className="col-1">Posting Date</th>
-                                        <th className="col-1">Action</th>												
+                                        <th>#</th>
+                                        <th class="col-2.2">First Name</th>			
+                                        <th class="col-2.2">Last Name</th>
+                                        <th class="col-2.2">Email</th>
+                                        <th class="col-2.2">Mobile Number</th>
+                                        <th class="col-2.2">Posting Date</th>
+                                        <th class="col-1">Action</th>												
                                     </tr>
                                 </thead>									
                                 <tfoot>
                                     <tr>
-                                        <th className="col-2">#</th>
-                                        <th className="col-2">First Name</th>			
-                                        <th className="col-2">Last Name</th>
-                                        <th className="col-2">Email</th>
-                                        <th className="col-1">Mobile Number</th>
-                                        <th className="col-1">Message</th>
-                                        <th className="col-1">Posting Date</th>					
-                                        <th className="col-1">Action</th>		
+                                        <th>#</th>
+                                        <th class="col-2.2">First Name</th>			
+                                        <th class="col-2.2">Last Name</th>
+                                        <th class="col-2.2">Email</th>
+                                        <th class="col-2.2">Mobile Number</th>
+                                        <th class="col-2.2">Posting Date</th>					
+                                        <th class="col-1">Action</th>		
                                     </tr>
                                 </tfoot>                                
                                 <tbody>
@@ -64,9 +62,9 @@
                                             <td><?php echo $res[2]; ?></td>
                                             <td><?php echo $res[3]; ?></td>
                                             <td><?php echo $res[4]; ?></td>
-                                            <td><?php echo $res[5]; ?></td>
                                             <td><?php echo $res[6]; ?></td>
-                                            <td><a class="view" data-id=<?php echo $res[0];?>><i class="ri-eye-fill mr-2 text-primary"></i></a></td>
+                                            <td><a class="viewMessage" data-id="<?php echo $res[0];?>"><i class="ri-chat-2-fill text-primary"></i></a>
+                                            &nbsp;<a class="deleteMsg" data-id="<?php echo $res[0]; ?>"><i class="ri-delete-bin-6-fill mr-2 text-danger"></i></a></td> 
                                         </tr>
                                         <?php
                                         $i++;$inc++;
@@ -82,3 +80,25 @@
             </div>
         </div>
     </div>
+
+
+        <!--user View Modal -->
+<div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">From : &nbsp;<h5 id="msgHeader"></h5></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="msghere">                        
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>
