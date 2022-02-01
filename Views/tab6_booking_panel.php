@@ -1,7 +1,7 @@
 <!--Module - 1   -->
 <div class="tab-pane fade content-page" id="module1">
-        <div class="row">
-        <div class="col">
+
+<div class="col">
                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">

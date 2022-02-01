@@ -100,114 +100,189 @@ $(document).ready(function(){
         $("#li2").removeClass("active");    
         $("#li3").addClass("active");
         $("#li5").removeClass("active");
-        $("#li4").removeClass("active");    
+        $("#li4").removeClass("active");
+        $("#li6").removeClass("active");                    
     });
-    $("#li2a").click(function(){
+    $("#li2a").click(function(){        
         $("#li1").removeClass("active");
         $("#li2").addClass("active");
         $("#li3").removeClass("active");
         $("#li5").removeClass("active");
-        $("#li4").removeClass("active");    
+        $("#li4").removeClass("active"); 
+        $("#li6").removeClass("active");            
     });
     $("#li3a").click(function(){
         $("#li1").removeClass("active");
         $("#li2").removeClass("active");
         $("#li3").addClass("active");
         $("#li4").removeClass("active");
-        $("#li5").removeClass("active");    
+        $("#li5").removeClass("active");
+        $("#li6").removeClass("active");            
     });
     $("#li1a").click(function(){
         $("#li2").removeClass("active");
         $("#li3").removeClass("active");
         $("#li1").addClass("active");
         $("#li5").removeClass("active");
-        $("#li4").removeClass("active");    
+        $("#li4").removeClass("active");
+        $("#li6").removeClass("active");            
     });
     $("#li5a").click(function(){
         $("#li2").removeClass("active");
         $("#li3").removeClass("active");
         $("#li5").addClass("active");
         $("#li1").removeClass("active");
-        $("#li4").removeClass("active");    
+        $("#li4").removeClass("active");
+        $("#li6").removeClass("active");            
     });
     $("#li4a").click(function(){
         $("#li2").removeClass("active");
         $("#li3").removeClass("active");
         $("#li4").addClass("active");
         $("#li1").removeClass("active");
+        $("#li5").removeClass("active");
+        $("#li6").removeClass("active");            
+    });   
+    $("#li6a").click(function(){
+        $("#li2").removeClass("active");
+        $("#li3").removeClass("active");
+        $("#li6").addClass("active");
+        $("#li1").removeClass("active");
         $("#li5").removeClass("active");    
+        $("#li4").removeClass("active");    
     });    
 
-    $(".update1").click(function (){
-        var userid = $(this).attr("data-id");
-        // alert('h');
+    // For contactus queries
+    function loadcontactusquerypage(page){
         $.ajax({
-            url: "../Database/updateuser.php",
-            type: "POST",
-            data: { userid: userid },
-            async: true,
-            dataType: "JSON",
-            success: function (data) {
-                $("#u-fname").val(data.firstname);
-                $("#u-lname").val(data.lastname);
-                $("#u-user").val(data.username);
-                let role = data.rid;
-                role++;
-                // alert(role);
-                $("#u-role").prop('selectedIndex', role);
-                $("#updatetable").modal('show');
+            url : "../Database/contactusquery.php",
+            type : "POST",
+            data : {page_no : page},
+            success:function(data){
+                $("#contctusqueries").html(data);
             }
-        });
-    });
+        })
+    }
+    loadcontactusquerypage();
+    $(document).on("click","#contact_pagination a",function(e){
+        e.preventDefault();
+        var page_id = $(this).attr("id");
+        loadcontactusquerypage(page_id);
+    })
 
-$("#done1").click(function(){
-    var ufname = $('#u-fname').val();
-    var ulname = $('#u-lname').val();
-    var username = $('#u-user').val();
-    var urole = $('#u-role').val();
-    if(ufname==""){
-        return false;
+    // Live search
+    $("#search_contact_query").on("keyup",function(){
+        var search_item = $(this).val();        
+        $.ajax({
+            url : "../Database/contactusquery.php",
+            type : "POST",
+            data : {search : search_item},
+            success:function(data){
+                $("#contctusqueries").html(data);
+            }
+        })
+    })
+    // ---------------------
+
+    // For Image
+    function loadimagepage(page){
+        $.ajax({
+            url : "../Database/imagequery.php",
+            type : "POST",
+            data : {page_no : page},
+            success:function(data){
+                $("#imageuploads").html(data);
+            }
+        })
     }
-    if(ulname==""){
-        return false;
-    }
-    if(username==""){
-        return false;
-    }
-    if(urole==""){
-        return false;
-    }
+    loadimagepage();
+    $(document).on("click","#image_pagination a",function(e){
+        e.preventDefault();
+        var page_id = $(this).attr("id");
+        loadimagepage(page_id);
+    })
+
+    // Live search
+    $("#search_image_query").on("keyup",function(){
+        var search_item = $(this).val();        
+        $.ajax({
+            url : "../Database/imagequery.php",
+            type : "POST",
+            data : {search : search_item},
+            success:function(data){
+                $("#imageuploads").html(data);
+            }
+        })
+    })
+    // ---------
+})
+
+$(".update1").click(function (){
+    var userid = $(this).attr("data-id");
+    // alert('h');
     $.ajax({
         url: "../Database/updateuser.php",
-        type: "post",
-        data: { ufname: ufname, ulname: ulname, username: username, urole: urole },
+        type: "POST",
+        data: { userid: userid },
+        async: true,
+        dataType: "JSON",
         success: function (data) {
-            // alert("done");
-            $("#updatetable").modal('hide');
-            // $('#users').tabs('select', 1);
-        }, error: function () {
-            alert('error');
+            $("#u-fname").val(data.firstname);
+            $("#u-lname").val(data.lastname);
+            $("#u-user").val(data.username);
+            let role = data.rid;
+            role++;
+            // alert(role);
+            $("#u-role").prop('selectedIndex', role);
+            $("#updatetable").modal('show');
         }
     });
 });
 
-    $(".del").click(function(){
-        var del = $(this);
-        var id = $(this).attr("data-id");
-        // alert(id);
-        $.ajax({
-            url: "../Database/deleteuser.php",
-            type: "post",
-            data: { id: id },
-            success: function (d) {
-                del.closest("tr").hide();
-            }
-        });
+$("#done1").click(function(){
+var ufname = $('#u-fname').val();
+var ulname = $('#u-lname').val();
+var username = $('#u-user').val();
+var urole = $('#u-role').val();
+if(ufname==""){
+    return false;
+}
+if(ulname==""){
+    return false;
+}
+if(username==""){
+    return false;
+}
+if(urole==""){
+    return false;
+}
+$.ajax({
+    url: "../Database/updateuser.php",
+    type: "post",
+    data: { ufname: ufname, ulname: ulname, username: username, urole: urole },
+    success: function (data) {
+        // alert("done");
+        $("#updatetable").modal('hide');
+        // $('#users').tabs('select', 1);
+    }, error: function () {
+        alert('error');
+    }
+});
+});
+
+$(".del").click(function(){
+    var del = $(this);
+    var id = $(this).attr("data-id");
+    // alert(id);
+    $.ajax({
+        url: "../Database/deleteuser.php",
+        type: "post",
+        data: { id: id },
+        success: function (d) {
+            del.closest("tr").hide();
+        }
     });
-
-    $('.datatable').DataTable();
-})
-
+});
 
 function update(rid){
 
@@ -587,7 +662,7 @@ $(".changethisIddes").click(function(){
     });
 });
 
-$(".viewMessage").click(function(){        
+$(document).on("click",".viewMessage",function() {
     var msg_id = $(this).attr("data-id");
     $.ajax({
         url: "../Database/view.php",
@@ -595,11 +670,12 @@ $(".viewMessage").click(function(){
         data: { sendmsg : msg_id},
         success: function (d) {       
             var datas = JSON.parse(d)
-            $("#msgHeader").html(datas.Emailid);
-            $("#msghere").html(datas.Message);
+            $("#msgHeader").html(datas.email);
+            $("#msghere").html(datas.msg);
             $("#msgModal").modal('show');
         }
     });
+    e.prevenetDefault();
 });
 
 $(".deleteMsg").click(function(){    
@@ -630,7 +706,7 @@ function accept(id){
 
 
 function reject(id){
-    var f=1;   
+    var f=1;
     $.ajax({
         url: "../Database/updateuser.php",
         type: "post",
@@ -643,7 +719,7 @@ function reject(id){
     });    
 }
 
-$("#deleteImg").click(function(){
+$(".deleteImg").click(function(){
     var id = $(this).attr("data-id");    
     $.ajax({
         url: "../Database/deleteuser.php",
@@ -651,6 +727,7 @@ $("#deleteImg").click(function(){
         data: { imgID: id },
         success: function (d) {            
             alert('successfull')
+            window.location.reload();
         },error: function () {
             alert('error');
         }

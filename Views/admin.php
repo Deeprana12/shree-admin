@@ -85,6 +85,7 @@ include_once '../Database/uploads_img.php';
 </div>
 
 <!--sidebar content-->
+
 <div class="tab-content container-fluid">
 
     <?php include('tab1_dashboard.php') ?>
@@ -702,7 +703,7 @@ include_once 'Navbar.php';
 
 <!-- Footer -->
 <?php
-include("Footer.php");
+include_once ('Footer.php');
 ?>
 <!-- Footer END -->
 </body>

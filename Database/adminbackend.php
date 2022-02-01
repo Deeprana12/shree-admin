@@ -24,7 +24,7 @@ function allusers(mysqli $conn){
 
 function allqueries(mysqli $conn){
 
-    $sql = "SELECT * FROM tblcontactusquery";
+    $sql = "SELECT * FROM tbl_contactusquery";
     $result = mysqli_query($conn, $sql);
     if(!$result){
         echo "Error: " . $sql . " " . mysqli_error($conn);

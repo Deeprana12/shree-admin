@@ -40,7 +40,7 @@ if(isset($_POST['msg_id'])){
 
 if(isset($_POST['imgID'])){    
     $id = $_POST['imgID'];
-    $sql1 = "DELETE from shreeimages where id='$id'";    
+    $sql1 = "DELETE from tbl_shreeimages where id='$id'";    
     $result1 = mysqli_query($conn,$sql1);     
 }
 

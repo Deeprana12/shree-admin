@@ -6,7 +6,7 @@ if(isset($_POST['upload'])){
 
     $file = $_FILES['image']['name'];    
     $target = "../Asserts/images/".basename($file); 
-    $query = "INSERT INTO shreeimages(image) VALUES ('$file')";
+    $query = "INSERT INTO tbl_shreeimages(image) VALUES ('$file')";
 
     $res = mysqli_query($conn,$query);
 
@@ -17,8 +17,8 @@ if(isset($_POST['upload'])){
             $msg = "Failed to upload image";
         }
     }
+    header("location:javascript://history.go(-1)");        
 
-    
 }
 
 
