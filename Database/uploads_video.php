@@ -10,4 +10,10 @@ $sql = "INSERT INTO tbl_shreevideos VALUES ($video_name,$video_desc,$video_link)
 
 $res = mysqli_query($conn,$sql);
 
+if($res){
+    echo 'successfull';
+}else{
+    echo 'unsuccessfull';
+}
+
 ?>

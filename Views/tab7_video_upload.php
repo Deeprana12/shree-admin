@@ -5,7 +5,7 @@
                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
-                            <h4 class="card-title">Contact-us queries</h4>
+                            <h4 class="card-title">Videos modules</h4>
                         </div>
                         <div class="iq-card-header-toolbar d-flex align-items-center">
                             <div class="dropdown">
@@ -20,53 +20,34 @@
                         </div>
                     </div>
                     <div class="iq-card-body">
-                        <div class="table-responsive">
-                            <table id="user-list-table" class="table table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">                                
-                                <thead>
-                                    <tr>
-                                        <th className="col-2"> # </th>                                        											
-                                        <th classname="col-8"> Video link (from Youtube) </th>
-                                        <th classname="col-2"> Action </th>
-                                    </tr>
-                                </thead>									
-                                <tfoot>
-                                    <tr>
-                                        <th className="col-2"> # </th>                                        											
-                                        <th classname="col-8"> Video link (from Youtube) </th>
-                                        <th classname="col-2"> Action </th>
-                                    </tr>
-                                </tfoot>                                
-                                <tbody>
-                                <?php
-                                $i=1;
-                                $inc=1;
-                                $result=allqueries($conn);
-                                $num=mysqli_num_rows($result);
-                                if($num==0){
-                                    echo "No Data Available";
-                                }else{
-                                    // $res = $result->fetch_assoc();
-                                    while($res = mysqli_fetch_array($result)){
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $i ?></td>
-                                            <td><?php echo $res[1]; ?></td>
-                                            <td><?php echo $res[2]; ?></td>
-                                            <td><?php echo $res[3]; ?></td>
-                                            <td><?php echo $res[4]; ?></td>
-                                            <td><?php echo $res[5]; ?></td>
-                                            <td><?php echo $res[6]; ?></td>
-                                            <td><a class="view" data-id=<?php echo $res[0];?>><i class="ri-eye-fill mr-2 text-primary"></i></a></td>
-                                        </tr>
-                                        <?php
-                                        $i++;$inc++;
-                                    }
-                                }
-                                ?>
-                                </tbody>
-                            </table>
+                        <form>
+                            <div class="form-group">
+                                    <label for="email">Video Name:</label>
+                                    <input type="text" class="form-control" id="video_name">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Video Description:</label>
+                                    <input type="text" class="form-control" id="video_desc">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Video link (from Youtube)</label>
+                                    <textarea class="form-control" id="video_link" rows="3"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" onclick="uploadVideo()">Upload</button>
+
+                        </form>
+                        
+                        
+                        <div class="iq-search-bar mt-5">                                               
+                            <input id="search_video_query" type="text" class="text search-input" placeholder="Type here to search...">                        
+                        </div>
+                        <div class="table-responsive" id="videouploads">                            
                             
                         </div>
+
                     </div>
                 </div>
             </div>

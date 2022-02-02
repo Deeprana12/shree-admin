@@ -27,7 +27,7 @@
                     <div class="table-responsive">
                         <div class="result">
                             <form method="GET">
-                                <table class='table'>
+                                <table id="user-list-table" class="table table-striped table-bordered mt-4" role="grid">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>

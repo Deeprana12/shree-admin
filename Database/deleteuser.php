@@ -44,4 +44,10 @@ if(isset($_POST['imgID'])){
     $result1 = mysqli_query($conn,$sql1);     
 }
 
+if(isset($_POST['videoID'])){    
+    $id = $_POST['videoID'];
+    $sql1 = "DELETE from tbl_shreevideos where id='$id'";    
+    $result1 = mysqli_query($conn,$sql1);     
+}
+
 ?>

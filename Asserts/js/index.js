@@ -215,6 +215,39 @@ $(document).ready(function(){
         })
     })
     // ---------
+
+    // For Image
+    function loadvideopage(page){
+        $.ajax({
+            url : "../Database/videoquery.php",
+            type : "POST",
+            data : {page_no : page},
+            success:function(data){
+                $("#videouploads").html(data);
+            }
+        })
+    }
+    loadvideopage();
+    $(document).on("click","#video_pagination a",function(e){
+        e.preventDefault();
+        var page_id = $(this).attr("id");
+        loadvideopage(page_id);
+    })
+
+    // Live search
+    $("#search_video_query").on("keyup",function(){
+        var search_item = $(this).val();        
+        $.ajax({
+            url : "../Database/videoquery.php",
+            type : "POST",
+            data : {search : search_item},
+            success:function(data){
+                $("#videouploads").html(data);
+            }
+        })
+    })
+    // ---------
+
 })
 
 $(".update1").click(function (){
@@ -733,3 +766,37 @@ $(".deleteImg").click(function(){
         }
     })
 })
+
+function uploadVideo(){
+
+    var video_name = document.getElementById('video_name').innerText;
+    var video_desc = document.getElementById('video_desc').innerHTML;
+    var video_link = document.getElementById('video_link').innerHTML;
+    
+    $.ajax({
+        url: "../Database/uploads_video.php",
+        type: "post",
+        data: { video_name: video_name,video_desc : video_desc,video_link:video_link },
+        success: function (d) {            
+            alert('successfull')
+            window.location.reload();
+        },error: function () {
+            alert('error');
+        }
+    })
+
+}
+
+$(document).on("click",".deletevideo",function() {  
+    var id = $(this).attr("data-id");
+    // alert(id);
+    $.ajax({
+        url: "../Database/deleteuser.php",
+        type: "post",
+        data: { videoID: id },
+        success: function (d) {
+            alert('successfull')
+            window.location.reload();
+        }
+    });
+});

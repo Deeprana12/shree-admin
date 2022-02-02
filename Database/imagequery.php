@@ -1,7 +1,7 @@
 <?php
 
     // set pagination limit here :
-    $set_limit = 1;
+    $set_limit = 5;
 
     include_once('config.php');
 
@@ -28,10 +28,11 @@
                                     while ($row = mysqli_fetch_assoc($result)){
                                         $output .= "<tr>
                                             <td class='col-2'>{$i}</td>
-                                            <td class='col-10' style='text-align:center'>                                                
+                                            <td class='col-4' style='text-align:center'>                                                
                                             <img height='200' width='200' src='../Asserts/images/{$row['image']}'>
                                             </td>
-                                            <td>
+                                            <td class='col-4'>{$row['image_desc']}</td>
+                                            <td class='col-2'>
                                             <a class='deleteImg' data-id='{$row['id']}'><i class='ri-delete-bin-6-fill mr-2 text-danger'></i></a>
                                             </td>
                                         </tr>";                           

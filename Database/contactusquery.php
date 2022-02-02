@@ -1,7 +1,7 @@
 <?php
 
     // set pagination limit here :
-    $set_limit = 1;
+    $set_limit = 5;
 
     include_once('config.php');
 

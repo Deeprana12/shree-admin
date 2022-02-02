@@ -24,7 +24,7 @@
                 </div>
                 <div class="iq-card-body">
                     <div class="table-responsive">
-                        <table class="table mb-0 table-borderless">
+                        <table  id="user-list-table" class="table table-striped table-bordered mt-4" role="grid">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
