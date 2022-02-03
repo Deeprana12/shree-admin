@@ -1,107 +1,30 @@
-// function fetchData(){
-//     let action = "fetchallData";
-//     $.ajax({
-//         url: "../Database/fetchData.php",
-//         type: "POST",
-//         data: { action: action },
-//         async: true,
-//         dataType: "JSON",
-//         success: function (res) {            
-//             // var temp=JSON.parse(res);   
-//             var s;     
-//             s+=`<div class="table-responsive">
-//                 <table class="table mb-0">
-//                     <thead>
-//                         <tr>
-//                             <th>#</th>
-//                             <th>Name</th>
-//                             <!-- <th>email</th> -->
-//                             <!-- <th>phone</th> -->
-//                             <th>eventname</th>
-//                             <th>time</th>
-//                             <th>booking</th>
-//                             <th>FromDate</th>
-//                             <th>ToDate</th>
-//                             <!-- <th>Posting date</th> -->
-//                             <th>Status</th>
-//                             <th>Action</th>
-//                         </tr>
-//                     </thead>									
-//                     <tfoot>
-//                         <tr>
-//                             <th>#</th>
-//                             <th>Name</th>
-//                             <!-- <th>email</th> -->
-//                             <!-- <th>phone</th> -->
-//                             <th>eventname</th>
-//                             <th>time</th>
-//                             <th>booking</th>
-//                             <th>From Date</th>
-//                             <!-- <th>Posting date</th> -->
-//                             <th>Status</th>			
-//                             <th>To Date</th>												
-//                             <th>Action</th>
-//                         </tr>
-//                     </tfoot>
-//                     <!-- Table Body -->
-//                     <tbody>`;
-//                     temp.forEach(function(row){                  
-//                         s+="<td>"+"</td>"+
-//                         "<td>"+row[0]+"</td>"+
-//                         "<td>"+row[1]+"</td>"+
-//                         "<td>"+row[2]+"</td>"+
-//                         "<td>"+row[3]+"</td>"+
-//                         "<td>"+row[4]+"</td>";
-//                         // <!-- <td><?php echo $res['PostingDate']; ?></td> -->
-//                         // "<td>"+row[5]+"</td>"                                             
-//                         // "<td>"+
-//                         //     <?php if($res['Status']==-1) {?>
-//                         //         <span class="text-success" id="desac<?php echo $res['id']; ?>" onclick="accept(<?php echo $res['id']; ?>)" style="cursor:pointer;">Accept</span>
-//                         //         <span id="sl<?php echo $res['id']; ?>">/</span><span id="desrj<?php echo $res['id']; ?>" onclick="reject(<?php echo $res['id']; ?>)" style="cursor:pointer;"class="text-danger"> Reject</span>
-//                         //     <?php }else{ ?>
-//                         //         <?php if($res['Status']==0){ ?>
-//                         //         <span class="text-success" id="desac<?php echo $res['id']; ?>" onclick="accept(<?php echo $res['id']; ?>)" style="cursor:pointer;">Accepted</span>
-//                         //     <?php }else{ ?>
-//                         //         <span id="desrj<?php echo $res['id']; ?>" onclick="reject(<?php echo $res['id']; ?>)" style="cursor:pointer;"class="text-danger"> Rejected</span>
-//                         //     <?php } ?>
-//                         //     <a class="viewbo" data-id="<?php echo $res['id']; ?>"><i class="ri-pencil-fill mr-2 text-primary"></i></a>                                                
-//                         //     <?php } ?>
-                            
-//                         // </td>                                            
-//                         // <td>
-//                         //     <?php
-//                         //     $per = fetchrole1($conn,$_SESSION['rid']);
-//                         //     $s = $per['permisions'];
-//                         //     if(str_contains($s,'m2-1')){?>
-//                         //         <a class="updateuserinfo" id="<?php echo $res['id']; ?>"><i class="ri-pencil-fill mr-2 text-primary"></i></a>
-//                         //         <a class="viewuserinfo" id="<?php echo $res['id']; ?>"><i class="ri-eye-fill mr-2 text-primary"></i></a>
-//                         //     <?php } if(str_contains($s,'m2-2')){?>
-//                         //     <a class="delbo" data-id="<?php echo $res['id']; ?>"><i class="ri-delete-bin-6-fill mr-2 text-danger"></i></a><?php }?>
-
-//                     });
-//                         s+=`</td>
-//                     </tr>
-//             </tbody>
-//         </table>                        
-//         </div>`;
-    
-//             ('#result').html(s);
-//             alert(s);
-//         }
-//     });    
-// }
-
 $(document).ready(function(){
             
     // fetchData();
 
-    $("#tbookings").click(function(){
+    $("#contactq").click(function(){
         $("#li1").removeClass("active");
         $("#li2").removeClass("active");    
-        $("#li3").addClass("active");
+        $("#li3").removeClass("active");
+        $("#li4").addClass("active");
         $("#li5").removeClass("active");
-        $("#li4").removeClass("active");
         $("#li6").removeClass("active");                    
+    });
+    $("#imageq").click(function(){
+        $("#li1").removeClass("active");
+        $("#li2").removeClass("active");    
+        $("#li3").removeClass("active");
+        $("#li4").removeClass("active");
+        $("#li5").addClass("active");
+        $("#li6").removeClass("active");                    
+    });
+    $("#videoq").click(function(){
+        $("#li1").removeClass("active");
+        $("#li2").removeClass("active");    
+        $("#li3").removeClass("active");
+        $("#li4").removeClass("active");
+        $("#li5").removeClass("active");
+        $("#li6").addClass("active");                    
     });
     $("#li2a").click(function(){        
         $("#li1").removeClass("active");
@@ -752,7 +675,7 @@ function reject(id){
     });    
 }
 
-$(".deleteImg").click(function(){
+$(document).on("click",".deleteImg",function() {  
     var id = $(this).attr("data-id");    
     $.ajax({
         url: "../Database/deleteuser.php",
@@ -769,22 +692,20 @@ $(".deleteImg").click(function(){
 
 function uploadVideo(){
 
-    var video_name = document.getElementById('video_name').innerText;
-    var video_desc = document.getElementById('video_desc').innerHTML;
-    var video_link = document.getElementById('video_link').innerHTML;
-    
+    var video_name = document.getElementById('video_name').value;
+    var video_desc = document.getElementById('video_desc').value;
+    var video_link = document.getElementById('video_link').value;    
     $.ajax({
         url: "../Database/uploads_video.php",
         type: "post",
         data: { video_name: video_name,video_desc : video_desc,video_link:video_link },
         success: function (d) {            
-            alert('successfull')
+            alert(d)
             window.location.reload();
         },error: function () {
             alert('error');
         }
     })
-
 }
 
 $(document).on("click",".deletevideo",function() {  
@@ -800,3 +721,24 @@ $(document).on("click",".deletevideo",function() {
         }
     });
 });
+
+
+function openMailbox(){    
+    $("#mailtxt").modal('show');        
+}
+
+function sendMail(){
+
+    var client = document.getElementById('msgHeader').innerHTML;
+    var mailtext = document.getElementById('orgmailtxt').innerHTML;
+    $.ajax({
+        url: "../Database/sendmail.php",
+        type: "post",
+        data: { client: client,mailtext:mailtext },
+        success: function (d) {
+            alert(d);
+            window.location.reload();
+        }
+    });
+
+}

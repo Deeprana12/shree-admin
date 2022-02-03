@@ -1,19 +1,14 @@
 <?php
 
-include_once "config.php";
+    include_once "config.php";
 
-$video_name = $_POST['video_name'];
-$video_desc = $_POST['video_desc'];
-$video_link = $_POST['video_link'];
+    $video_name = $_POST['video_name'];
+    $video_desc = $_POST['video_desc'];
+    $video_link = $_POST['video_link'];
 
-$sql = "INSERT INTO tbl_shreevideos VALUES ($video_name,$video_desc,$video_link)";
+    $sql = "INSERT INTO tbl_shreevideos(video_name, video_desc, video_link) VALUES ('$video_name','$video_desc','$video_link')";
 
-$res = mysqli_query($conn,$sql);
-
-if($res){
-    echo 'successfull';
-}else{
-    echo 'unsuccessfull';
-}
+    $res = mysqli_query($conn,$sql);
+    echo "done"
 
 ?>

@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="col-md-12 mb-4" align="right">
-                        <a href="Views/sign-up.php" class="btn btn-primary" >Crime Registration Form</a>
+                        <!-- <a href="Views/sign-up.php" class="btn btn-primary" >Crime Registration Form</a> -->
                         <button class="btn btn-primary" id="submit" name="login" type="submit">Login</button>
                     </div>
 

@@ -81,6 +81,25 @@ function fetchrole1(mysqli $conn,int $id){
     return $row;
 }
 
+function totalqueries(mysqli $conn){
+    $sql1 = "SELECT * FROM tbl_contactusquery";
+    $result1 = mysqli_query($conn, $sql1);
+    
+    return $result1;
+}
 
+function totalimages(mysqli $conn){
+    $sql1 = "SELECT * FROM tbl_shreeimages";
+    $result1 = mysqli_query($conn, $sql1);
+
+    return $result1;
+}
+
+function totalvideos(mysqli $conn){
+    $sql1 = "SELECT * FROM tbl_shreevideos";
+    $result1 = mysqli_query($conn, $sql1);
+
+    return $result1;
+}
 
 ?>
