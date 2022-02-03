@@ -690,15 +690,25 @@ $(document).on("click",".deleteImg",function() {
     })
 })
 
+function youtube_parser(url){
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    var match = url.match(regExp);
+    return (match&&match[7].length==11)? match[7] : false;
+}
+
 function uploadVideo(){
 
     var video_name = document.getElementById('video_name').value;
     var video_desc = document.getElementById('video_desc').value;
     var video_link = document.getElementById('video_link').value;    
+    var video_id = youtube_parser(video_link);
+    var embed_video_link = "https://www.youtube.com/embed/";
+    embed_video_link += video_id;
+    embed_video_link += "?autoplay=1";    
     $.ajax({
         url: "../Database/uploads_video.php",
         type: "post",
-        data: { video_name: video_name,video_desc : video_desc,video_link:video_link },
+        data: { video_name: video_name,video_desc : video_desc,video_link:embed_video_link },
         success: function (d) {            
             alert(d)
             window.location.reload();
